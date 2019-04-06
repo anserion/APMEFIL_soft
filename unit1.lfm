@@ -1,0 +1,287 @@
+object Form1: TForm1
+  Left = 6
+  Height = 612
+  Top = 19
+  Width = 1186
+  BorderIcons = [biSystemMenu]
+  BorderStyle = bsSingle
+  Caption = 'Медианная фильтрация видеопотока'
+  ClientHeight = 587
+  ClientWidth = 1186
+  Menu = MainMenu
+  OnClose = FormClose
+  OnCreate = FormCreate
+  LCLVersion = '1.8.4.0'
+  object PanelStatus: TPanel
+    Left = 0
+    Height = 66
+    Top = 521
+    Width = 1186
+    Align = alBottom
+    Alignment = taLeftJustify
+    BevelOuter = bvLowered
+    ClientHeight = 66
+    ClientWidth = 1186
+    TabOrder = 0
+    object LabelPSNR_noise: TLabel
+      Left = 5
+      Height = 19
+      Top = 8
+      Width = 128
+      Caption = 'Сигнал/шум (PSNR):'
+      ParentColor = False
+    end
+    object LabelPSNR_red_noise: TLabel
+      Left = 176
+      Height = 19
+      Top = 8
+      Width = 52
+      Caption = 'R канал:'
+      ParentColor = False
+    end
+    object LabelPSNR_green_noise: TLabel
+      Left = 176
+      Height = 19
+      Top = 24
+      Width = 54
+      Caption = 'G канал:'
+      ParentColor = False
+    end
+    object LabelPSNR_blue_noise: TLabel
+      Left = 176
+      Height = 19
+      Top = 40
+      Width = 53
+      Caption = 'B канал:'
+      ParentColor = False
+    end
+    object LabelPSNR_filter: TLabel
+      Left = 344
+      Height = 19
+      Top = 8
+      Width = 128
+      Caption = 'Сигнал/шум (PSNR):'
+      ParentColor = False
+    end
+    object LabelPSNR_red_filter: TLabel
+      Left = 523
+      Height = 19
+      Top = 8
+      Width = 52
+      Caption = 'R канал:'
+      ParentColor = False
+    end
+    object LabelPSNR_green_filter: TLabel
+      Left = 523
+      Height = 19
+      Top = 23
+      Width = 54
+      Caption = 'G канал:'
+      ParentColor = False
+    end
+    object LabelPSNR_blue_filter: TLabel
+      Left = 523
+      Height = 19
+      Top = 40
+      Width = 53
+      Caption = 'B канал:'
+      ParentColor = False
+    end
+    object Label6: TLabel
+      Left = 37
+      Height = 19
+      Top = 24
+      Width = 74
+      Caption = 'зона помех'
+      ParentColor = False
+    end
+    object Label7: TLabel
+      Left = 352
+      Height = 19
+      Top = 24
+      Width = 114
+      Caption = 'зона фильтрации'
+      ParentColor = False
+    end
+  end
+  object PanelColor: TPanel
+    Left = 0
+    Height = 521
+    Top = 0
+    Width = 144
+    Align = alLeft
+    ClientHeight = 521
+    ClientWidth = 144
+    TabOrder = 1
+    object Label3: TLabel
+      Left = 11
+      Height = 19
+      Top = 0
+      Width = 121
+      Caption = 'Интервал таймера'
+      ParentColor = False
+    end
+    object EditTimer: TEdit
+      Left = 11
+      Height = 29
+      Top = 24
+      Width = 122
+      OnChange = EditTimerChange
+      TabOrder = 0
+      Text = '500'
+    end
+    object ButtonMedian: TButton
+      Left = 8
+      Height = 25
+      Top = 232
+      Width = 128
+      Caption = 'вкл. медианный'
+      OnClick = ButtonMedianClick
+      TabOrder = 1
+    end
+    object ButtonRestore: TButton
+      Left = 5
+      Height = 25
+      Top = 488
+      Width = 128
+      Caption = 'Сброс'
+      OnClick = ButtonRestoreClick
+      TabOrder = 2
+    end
+    object EditMedian: TEdit
+      Left = 8
+      Height = 29
+      Top = 191
+      Width = 122
+      NumbersOnly = True
+      OnChange = EditMedianChange
+      TabOrder = 3
+      Text = '3'
+    end
+    object Label4: TLabel
+      Left = 5
+      Height = 19
+      Top = 168
+      Width = 128
+      Caption = 'Радиус медианного'
+      ParentColor = False
+    end
+    object ButtonAdaptiveMedian: TButton
+      Left = 8
+      Height = 25
+      Top = 264
+      Width = 125
+      Caption = 'вкл. адаптивный'
+      OnClick = ButtonAdaptiveMedianClick
+      TabOrder = 4
+    end
+    object Label5: TLabel
+      Left = 8
+      Height = 19
+      Top = 80
+      Width = 87
+      Caption = 'Перец и соль'
+      ParentColor = False
+    end
+    object EditPepperSalt: TEdit
+      Left = 8
+      Height = 29
+      Top = 104
+      Width = 118
+      OnChange = EditPepperSaltChange
+      TabOrder = 5
+      Text = '95'
+    end
+    object ButtonPepperSalt: TButton
+      Left = 8
+      Height = 25
+      Top = 136
+      Width = 125
+      Caption = 'вкл. шум'
+      OnClick = ButtonPepperSaltClick
+      TabOrder = 6
+    end
+    object CheckBox_timer: TCheckBox
+      Left = 11
+      Height = 22
+      Top = 56
+      Width = 102
+      Caption = 'вкл. таймер'
+      Checked = True
+      OnClick = CheckBox_timerClick
+      State = cbChecked
+      TabOrder = 7
+    end
+  end
+  object ImageView: TPaintBox
+    Left = 144
+    Height = 521
+    Top = 0
+    Width = 1042
+    Align = alClient
+    OnPaint = ImageViewPaint
+  end
+  object CameraPanel: TPanel
+    Left = 152
+    Height = 512
+    Top = 8
+    Width = 512
+    Caption = 'Видеопоток выключен'
+    TabOrder = 2
+    OnPaint = CameraPanelPaint
+  end
+  object MainMenu: TMainMenu
+    left = 256
+    top = 16
+    object MenuItemFile: TMenuItem
+      Caption = 'Файл'
+      object MenuItemPictureOpen: TMenuItem
+        Caption = 'Открыть изображение'
+        OnClick = MenuItemPictureOpenClick
+      end
+      object MenuItemVideoOpen: TMenuItem
+        Caption = 'Загрузить видеофайл'
+        OnClick = MenuItemVideoOpenClick
+      end
+      object MenuItemCameraOpen: TMenuItem
+        Caption = 'Подключить видеокамеру'
+        OnClick = MenuItemCameraOpenClick
+      end
+      object MenuItemExit: TMenuItem
+        Caption = 'Выход'
+        OnClick = MenuItemExitClick
+      end
+    end
+    object MenuItemHelp: TMenuItem
+      Caption = 'Справка'
+      object MenuItemHelpUser: TMenuItem
+        Caption = 'Руководство пользователя'
+        OnClick = MenuItemHelpUserClick
+      end
+      object MenuItemHelpProgrammer: TMenuItem
+        Caption = 'Руководство программиста'
+        OnClick = MenuItemHelpProgrammerClick
+      end
+      object MenuItemHelpTeacher: TMenuItem
+        Caption = 'Методические рекомендации'
+        OnClick = MenuItemHelpTeacherClick
+      end
+      object MenuItemHelpAbout: TMenuItem
+        Caption = 'О программе'
+        OnClick = MenuItemHelpAboutClick
+      end
+    end
+  end
+  object OpenPictureDialog: TOpenPictureDialog
+    Filter = 'Все файлы (*.*)|*.*|Графические файлы (*.png;*.xpm;*.bmp;*.cur;*.ico;*.icns;*.jpeg;*.jpg;*.jpe;*.jfif;*.tif;*.tiff;*.gif;*.pbm;*.pgm;*.ppm)|*.png;*.xpm;*.bmp;*.cur;*.ico;*.icns;*.jpeg;*.jpg;*.jpe;*.jfif;*.tif;*.tiff;*.gif;*.pbm;*.pgm;*.ppm|Portable Network Graphic (*.png)|*.png|Pixmap (*.xpm)|*.xpm|Bitmaps (*.bmp)|*.bmp|Cursor (*.cur)|*.cur|Icon (*.ico)|*.ico|Mac OS X Icon (*.icns)|*.icns|Joint Picture Expert Group (*.jpeg;*.jpg;*.jpe;*.jfif)|*.jpeg;*.jpg;*.jpe;*.jfif|Tagged Image File Format (*.tif;*.tiff)|*.tif;*.tiff|Graphics Interchange Format (*.gif)|*.gif|Portable PixMap (*.pbm;*.pgm;*.ppm)|*.pbm;*.pgm;*.ppm'
+    left = 376
+    top = 16
+  end
+  object Timer1: TTimer
+    Enabled = False
+    Interval = 500
+    OnTimer = Timer1Timer
+    left = 528
+    top = 16
+  end
+end
